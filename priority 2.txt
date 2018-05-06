@@ -1,0 +1,30 @@
+class job:
+    id = float
+    time = int
+    weight = int
+    diff = float
+    def __init__(self, time, weight, id):
+        self.time = time
+        self.weight = weight
+        self.id = id
+        self.diff = self.weight / self.time
+
+size = float(0)
+sigmaCiWi = float(0)
+sigmaTi = float(0)
+times = []
+weights = []
+jobs = []
+greedySchedule = []
+
+def solve():
+    global jobs, sigmaTi
+    global sigmaCiWi
+    global size
+    for i in range(0, len(jobs)):
+        greedySchedule.append(jobs[i].id)
+        sigmaTi += jobs[i].time
+        sigmaCiWi += sigmaTi * jobs[i].weight
+
+jobs.sort(key=lambda x: (x.diff, x.weight), reverse = True)
+solve()
